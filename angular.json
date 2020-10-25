@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+	            "node_modules/popper.js/dist/umd/popper.js",
+	            "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "onecar-web"
+    }
+  },
+  "defaultProject": "onecar-web",
+  "cli": {
+    "analytics": "16940c9b-392e-4531-ba94-df2c6602ba15"
+  }
 }

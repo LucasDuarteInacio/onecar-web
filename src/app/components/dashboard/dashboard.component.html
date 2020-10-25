@@ -1,0 +1,369 @@
+<div class=" body container-fluid">
+    <div class="row">
+        <div class="col-sm-2 bg-white main-menu">
+            <div class="itens-menu-lateral-logo">
+                <img class="logo " src="../../../assets/Logo.png" alt="">
+            </div>
+            <div class="itens-menu-lateral">
+                <div class="item-lateral" (click)="AbrirModal(adicionarCliente)">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="text-menu-lateral">Cliente</div>
+            </div>
+            <div class="itens-menu-lateral" (click)="AbrirModal(adicionarVaga)">
+                <div class="item-lateral">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="text-menu-lateral">Vaga</div>
+            </div>
+            <div class="itens-menu-lateral" (click)="AbrirModal(adicionarFuncionario)">
+                <div class="item-lateral">
+                    <i class="fas fa-id-badge"></i>
+                </div>
+                <div class="text-menu-lateral">Funcionario</div>
+            </div>
+            <div class="itens-menu-lateral versao" (click)="AbrirModal(versao)">
+                <div class="text-menu-lateral pb-2">Versão 0.0.1</div>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="container  ml-5 mt-5">
+                <div class="row">
+                    <div class="col-3">
+                        <span class="titulo">TABELA DE PREÇOS</span>
+                        <div class="tabela-preco mt-5">
+                            <span class="">moto</span>
+                            <div class="card-tabela">
+                                <i class="far fa-clock mr-1"></i>
+                                <span>1:00</span>
+                                <span class="ml-3">R$: 5,00</span>
+                            </div>
+                            <div class="card-tabela">
+                                <i class="far fa-clock mr-1"></i>
+                                <span>1:00</span>
+                                <span class="ml-3">R$: 5,00</span>
+                            </div>
+                            <div class="card-tabela">
+                                <i class="far fa-clock mr-1"></i>
+                                <span>1:00</span>
+                                <span class="ml-3">R$: 5,00</span>
+                            </div>
+                        </div>
+                        <div class="tabela-preco mt-5">
+                            <span class="">Carro</span>
+                            <div class="card-tabela">
+                                <i class="far fa-clock mr-1"></i>
+                                <span>1:00</span>
+                                <span class="ml-3">R$: 5,00</span>
+                            </div>
+                            <div class="card-tabela">
+                                <i class="far fa-clock mr-1"></i>
+                                <span>1:00</span>
+                                <span class="ml-3">R$: 5,00</span>
+                            </div>
+                            <div class="card-tabela">
+                                <i class="far fa-clock mr-1"></i>
+                                <span>1:00</span>
+                                <span class="ml-3">R$: 5,00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9  ">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-6  ">
+                                    <div class="card-dashboard top">
+                                        <div class="caixa my-3 ml-4"><i
+                                                class="fas fa-cash-register mr-2"></i><a>Caixa</a></div>
+                                        <div class="caixa-valor m-3"><i class="fas fa-dollar-sign"><span
+                                                    class="caixa-texto">120,00</span></i></div>
+                                        <div class="caixa-valor p-3"><button type="button" class="btn btn-custom">Fechar
+                                                Caixa</button></div>
+                                    </div>
+                                </div>
+                                <div class="col-6  ">
+                                    <div class="card-dashboard top">
+                                        <div class="logout m-2"><i class="fas fa-sign-out-alt mr-1"></i>logout</div>
+                                        <div class="usuario mt-4 mr-4">
+                                            <span class="avatar-texto pt-3 mr-3">Kamylla Lacerda</span>
+                                            <img class="avatar-usuario"
+                                                src="https://avatars2.githubusercontent.com/u/40613327?v=4" alt="">
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <div class="card-dashboard meio">
+                                        <div class="card-vaga m-5 mb-2 ml-2">
+
+                                            <div class="conteudo-vaga " *ngFor="let vaga of  vagas">
+                                                <div class="numero-vaga mt-3"><span>{{vaga.id}}</span></div>
+                                                <div *ngIf="vaga.placa" class="placa-vaga"><span>{{vaga.placa}}</span>
+                                                </div>
+                                                <div *ngIf="!vaga.placa" class="placa-vaga"><span>000-0000</span></div>
+                                                <div *ngIf="!vaga.statusOcupacao" class="botao-pagamento">
+                                                    <button type="button"
+                                                        (click)="AbrirModalVaga(vaga.id,adicionarCarroVaga)"
+                                                        class="btn-pagamento btn-custom  btn-success">Adicionar</button>
+                                                </div>
+                                                <div *ngIf="vaga.statusOcupacao" class="botao-pagamento">
+                                                    <button type="button" (click)="AbrirModalVaga(vaga.id,adicionarPagamento)"
+                                                        class="btn-pagamento btn-custom  ">Pagamento</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #adicionarVaga>
+    <div class="m-5">
+        <p class="titulo">vagas</p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Vaga</th>
+                    <th scope="col">status</th>
+                    <th scope="col">Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vaga of vagas">
+                    <th scope="row">{{vaga.id}}</th>
+                    <td>{{vaga.status}}</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-primary mt-3 pull-right" (click)="addVaga()">Adicionar Vaga</button>
+        </div>
+
+    </div>
+</ng-template>
+
+<ng-template #adicionarCliente>
+    <div class="m-5">
+        <div class="d-flex justify-content-between">
+            <p class="titulo">Cliente</p>
+            <i class="fas fa-edit text-primary" style="cursor: pointer;" *ngIf="!editar" (click)="editar = !editar"> <a>
+                    EDITAR</a> </i>
+            <i class="fas fa-arrow-left text-primary" style="cursor: pointer;" *ngIf="editar"
+                (click)="editar = !editar"> <a> VOLTAR</a> </i>
+
+        </div>
+
+        <div class="" *ngIf="!editar">
+            <div class="sub-titulo">Cadastro de Cliente</div>
+            <form (ngSubmit)="addCliente()">
+                <div class="form-row ">
+                    <div class="col-12">
+                        <input type="text" class="form-control my-2" name="nome" [(ngModel)]="novoCliente.nome"
+                            placeholder="Nome Completo">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control my-2" name="cpf" [(ngModel)]="novoCliente.cpf"
+                            placeholder="Cpf">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control my-2" name="email" [(ngModel)]="novoCliente.email"
+                            placeholder="email">
+                    </div>
+
+                </div>
+                <div class="d-flex flex-row-reverse">
+                    <button type="submit" class="btn btn-primary mt-3 pull-right">Adicionar</button>
+                </div>
+            </form>
+
+            <p class="sub-titulo">Cadastro de Veiculo</p>
+            <select class="form-control" [(ngModel)]="idCliente" id="exampleFormControlSelect1">
+                <option>Cliente</option>
+                <option *ngFor="let cliente of clientes" [ngValue]="cliente.id">{{cliente.nome}}</option>
+
+            </select>
+            <form (ngSubmit)="addVeiculo()">
+                <div class="form-row ">
+                    <div class="col-12">
+                        <input type="text" class="form-control my-2" name="placa" [(ngModel)]="novoVeiculo.placa"
+                            placeholder="Placa">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control my-2" name="modelo" [(ngModel)]="novoVeiculo.modelo"
+                            placeholder="Modelo">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control my-2" placeholder="Cor" name="cor"
+                            [(ngModel)]="novoVeiculo.cor">
+                    </div>
+                    <select class="form-control" [(ngModel)]="novoVeiculo.tipo" name="tipo"
+                        id="exampleFormControlSelect1">
+                        <option>Tipo</option>
+                        <option [ngValue]="'carro'">Carro</option>
+                        <option [ngValue]="'moto'">Moto</option>
+                    </select>
+
+                </div>
+                <div class="d-flex flex-row-reverse">
+                    <button type="submit" class="btn btn-primary mt-3 pull-right">Adicionar</button>
+                </div>
+            </form>
+        </div>
+        <div class="" *ngIf="editar == true">
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">cpf</th>
+                        <th scope="col">nome</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Opçoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cliente of clientes">
+                        <th scope="row">{{cliente.nome}}</th>
+                        <td>{{cliente.cpf}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #adicionarFuncionario>
+    <div class="m-5">
+        <p class="titulo">Usuario</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form (ngSubmit)="addUsuario()">
+                        <div class="form-row ">
+                            <div class="col-12">
+                                <input type="text" class="form-control my-2" name="nome" [(ngModel)]="novoUsuario.nome"
+                                    placeholder="Nome Completo">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control my-2" name="cpf" [(ngModel)]="novoUsuario.cpf"
+                                    placeholder="Cpf">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control my-2" name="login"
+                                    [(ngModel)]="novoUsuario.login" placeholder="Login">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control my-2" name="senha"
+                                    [(ngModel)]="novoUsuario.senha" placeholder="Senha">
+                            </div>
+
+                        </div>
+                        <div class="d-flex flex-row-reverse">
+                            <button type="submit" class="btn btn-primary mt-3 pull-right">Adicionar</button>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="col-12 mt-3">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">nome</th>
+                                <th scope="col">cpf</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <th scope="row">{{usuario.nome}}</th>
+                                <td>{{usuario.cpf}}</td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #adicionarCarroVaga>
+    <div class="m-5">
+        <div class="titulo">Ocupar Vaga</div>
+        <div class="sub-titulo">Cliente</div>
+
+        <select class="form-control" [(ngModel)]="idCliente" (change)="bucarVeiculoPorCliente()">
+            <option [ngValue]="undefined">Cliente</option>
+            <option *ngFor="let cliente of clientes" [ngValue]="cliente.id">{{cliente.nome}}</option>
+        </select>
+        <div class="sub-titulo">Veiculo</div>
+        <select class="form-control" [(ngModel)]="idVeiculo">
+            <option *ngFor="let veiculo of veiculos" [ngValue]="veiculo.id">{{veiculo.modelo}}</option>
+        </select>
+        <form>
+            <div class="form-row ">
+                <div class="col-12">
+                    <div class="sub-titulo">Horario entrada</div>
+                    <input type="time" class="form-control my-2" name="nome" step="2" [(ngModel)]="recibo.entrada"
+                        placeholder="Horario entrada">
+                </div>
+
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-primary mt-3 pull-right" (click)="addRecibo()">Adicionar</button>
+            </div>
+        </form>
+
+    </div>
+</ng-template>
+
+<ng-template #adicionarPagamento>
+    <div class="m-5">
+        <div class="titulo">Pagamento</div>
+        <div class="d-flex justify-content-between ">
+            <div class="d-flex flex-column">
+                <div class="sub-titulo mt-3">{{recibo.veiculo?.placa}}</div>
+                <span style="font-family: Roboto;">{{recibo.veiculo?.modelo}}</span>
+                <span style="font-family: Roboto;">{{recibo.veiculo?.cor}}</span>
+                <span style="font-family: Roboto;">{{recibo.entrada}}</span>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="sub-titulo mt-3">Valor</div>
+                <span style="font-family: Roboto;">R${{recibo.pagamento?.valor}}</span>
+            </div>
+        </div>
+              
+
+        <div class="sub-titulo mt-3">Tipo de Pagamento</div>
+        <select class="form-control" [(ngModel)]="pagamento.tipo" >
+            <option [ngValue]="'cartaoCredito'">Cartão Credito</option>
+            <option [ngValue]="'cartaoDebito'">Cartão Debito</option>
+            <option [ngValue]="'dinheiro'">Dinheiro</option>
+        </select>
+        <div class="d-flex flex-row-reverse">
+            <button type="submit" class="btn btn-primary mt-3 pull-right" (click)="pagamentoRecibo()">Pagar</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #versao>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div class="m-5">
+        <p class="titulo">Sobre</p>
+    </div>
+</ng-template>

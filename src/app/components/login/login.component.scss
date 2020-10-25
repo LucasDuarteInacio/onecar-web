@@ -1,0 +1,111 @@
+.body{
+    height: 100vh;
+}
+.side-img{
+    background: #ffffff;
+    height: auto;
+}
+.side-form{
+    background: #1479ff;
+}
+
+input {
+    border: 1px solid #eaeaea;
+    border-radius: 2px;
+}
+.fs-12 {
+    font-size: 12px;
+}
+.btn-login {
+    background-color: transparent;
+    color: #eaeaea;
+    font-size: 14px;
+    border: 1px solid #eaeaea;
+    border-radius: 2px;
+}
+.btn-login:hover {
+    background-color: #eaeaea;
+    color: #477cbf;
+    font-size: 14px;
+    border: 1px solid #477cbf;
+    border-radius: 2px;
+}
+.pad {
+    padding: 0.25rem 0.5rem;
+}
+.invalid {
+    font-size: 12px;
+    color: #FFD700;
+    font-weight: 500;
+}
+.is-invalid {
+    border: 1px solid #FFD700;
+}
+.bg-gray {
+    background-color: #eaeaea;
+}
+
+.bg-blue {
+    background-color: #193b68;
+}
+
+.align-center-fat {
+    display: flex;
+    justify-content: center;
+}
+
+.align-center-son {
+    align-self: center;
+}
+
+.align-botton-son {
+    align-self: flex-end;
+}
+
+@media only screen and (min-width: 400px) {
+    .w-40 {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .w-40 {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .w-40 {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .w-40 {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .w-40 {
+        width: 40%;
+    }
+}
+
+.fs-14 {
+    font-size: 14x;
+}
+
+.text-color {
+    color: #eaeaea;
+}
+
+.foo {
+    position: fixed;
+    bottom: 20px;
+    color: #eaeaea;
+    font-size: 12px;
+    margin-left: 0.5%;
+}
+input { color: #000000 }
+

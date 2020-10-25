@@ -1,0 +1,130 @@
+<div class="body">
+    <app-header></app-header>
+    <div class="row m-0 h-100">
+
+        <div class="col-12 bg-primary text-white">
+            <div class="row">
+                <div class="col-5 m-5">
+                    <div class="d-flex justify-content-between ">
+                        <h4 class="pb-3">Vagas</h4>
+                        <p (click)="AbrirModal(AdicionarVaga)"><i
+                                class="fas fa-plus d-inline-flex p-2 bd-highlight pr-2"></i>Adicionar</p>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">nome Vaga</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td><i class="fas fa-edit text-white px-2"></i><i class="fas fa-times text-danger"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td><i class="fas fa-edit text-white px-2"></i><i class="fas fa-times text-danger"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td><i class="fas fa-edit text-white px-2"></i><i class="fas fa-times text-danger"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-5 m-5">
+                    <div class="d-flex justify-content-between ">
+                        <h4 class="pb-3">Usuarios</h4>
+                        <p (click)="AbrirModal(AdicionarUsuario)"><i
+                                class="fas fa-plus d-inline-flex p-2 bd-highlight pr-2"></i>Adicionar</p>
+                    </div>
+                    <table class="table">
+                        <thead>s
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Cpf</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let func of funcionarios">
+                                <th scope="row">{{func?.id}}</th>
+                                <td>{{func?.nome}}</td>
+                                <td>{{func.cpf}}</td>
+                                <td><i class="fas fa-edit text-white px-2"></i><i class="fas fa-times text-danger"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #AdicionarVaga>
+    <div class="m-5">
+        <p class="titulo-modal">Cadastro de vagas</p>
+        <form>
+            <div class="form-row ">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Nome da Vaga">
+                </div>
+                <div class="col">
+                    <select class="custom-select" id="inputGroupSelect02">
+                        <option value="1">Ativada</option>
+                        <option value="2">Desativada</option>
+                    </select>
+                </div>
+
+            </div>
+        </form>
+        <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-primary mt-3 pull-right">Adicionar</button>
+        </div>
+
+    </div>
+</ng-template>
+
+<ng-template #AdicionarUsuario>
+    <div class="m-5">
+        <p class="titulo-modal">Cadastro de Usuario</p>
+        <form>
+            <div class="form-row ">
+                <div class="col-12">
+                    <input type="text" class="form-control my-2" placeholder="Nome Completo">
+                </div>
+                <div class="col-12">
+                    <input type="text" class="form-control my-2" placeholder="Cpf">
+                </div>
+                <div class="col-12">
+                    <input type="text" class="form-control my-2" placeholder="Login">
+                </div>
+                <div class="col-12">
+                    <input type="text" class="form-control my-2" placeholder="Senha">
+                </div>
+
+            </div>
+        </form>
+        <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-primary mt-3 pull-right">Adicionar</button>
+        </div>
+
+    </div>
+</ng-template>

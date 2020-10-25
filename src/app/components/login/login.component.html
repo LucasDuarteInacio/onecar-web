@@ -1,0 +1,44 @@
+    <div class="body">
+    <div class="row m-0 h-100">
+  
+      <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 bg-white text-center align-center-fat">
+        <div class="align-center-son">
+          <img src="../../../assets/Logo.png" class="w-50">
+        </div>
+      </div>
+  
+      <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 bg-blue align-center-fat">
+  
+        <div class="align-center-son w-40">
+          <header class="mb-2 fs-14 text-color">
+            <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+            Sistema de Gestão de vagas
+          </header>
+          <div class="container">
+   
+            <form (ngSubmit)="logarSistema()">
+  
+              <div class="row mb-2">
+                <input class="col-lg-12 fs-12 p-2" type="text" [(ngModel)]="login.login"  name="username"
+                  placeholder="nome de usuário"  />
+  
+              </div>
+  
+              <div class="row mb-2">
+                <input type="password" class="col-lg-12 fs-12 p-2 " [(ngModel)]="login.senha" placeholder="senha" 
+                  name="senha"  />
+  
+              </div>
+  
+              <div class="row mb-2">
+                <button type="submit" class="col-lg-12 btn-login pad" >Entrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+  
+  
+      </div>
+  
+  
+    </div></div>
