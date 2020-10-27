@@ -32,39 +32,105 @@
                     <div class="col-3">
                         <span class="titulo">TABELA DE PREÇOS</span>
                         <div class="tabela-preco mt-5">
-                            <span class="">moto</span>
-                            <div class="card-tabela">
-                                <i class="far fa-clock mr-1"></i>
-                                <span>1:00</span>
-                                <span class="ml-3">R$: 5,00</span>
-                            </div>
-                            <div class="card-tabela">
-                                <i class="far fa-clock mr-1"></i>
-                                <span>1:00</span>
-                                <span class="ml-3">R$: 5,00</span>
-                            </div>
-                            <div class="card-tabela">
-                                <i class="far fa-clock mr-1"></i>
-                                <span>1:00</span>
-                                <span class="ml-3">R$: 5,00</span>
+                            <span class="">Carro</span>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>0:15</span>
+                                        </div>
+                                        <span class="">R$: 2,50</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>0:30</span>
+                                        </div>
+                                        <span class="">R$: 5,00</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>1:00</span>
+                                        </div>
+                                        <span class="">R$: 7,50</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>2:00</span>
+                                        </div>
+                                        <span class="">R$: 10,00</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>3:00</span>
+                                        </div>
+                                        <span class="">R$: 12,50</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>0:15</span>
+                                        </div>
+                                        <span class="">R$: 15,00</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tabela-preco mt-5">
-                            <span class="">Carro</span>
-                            <div class="card-tabela">
-                                <i class="far fa-clock mr-1"></i>
-                                <span>1:00</span>
-                                <span class="ml-3">R$: 5,00</span>
-                            </div>
-                            <div class="card-tabela">
-                                <i class="far fa-clock mr-1"></i>
-                                <span>1:00</span>
-                                <span class="ml-3">R$: 5,00</span>
-                            </div>
-                            <div class="card-tabela">
-                                <i class="far fa-clock mr-1"></i>
-                                <span>1:00</span>
-                                <span class="ml-3">R$: 5,00</span>
+                            <span class="">Moto</span>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>0:15</span>
+                                        </div>
+                                        <span class="">R$: 1,25</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>0:30</span>
+                                        </div>
+                                        <span class="">R$: 2,50</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>1:00</span>
+                                        </div>
+                                        <span class="">R$: 3,75</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>2:00</span>
+                                        </div>
+                                        <span class="">R$: 5,00</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>3:00</span>
+                                        </div>
+                                        <span class="">R$: 6,25</span>
+                                    </div>
+                                    <div class="card-tabela d-flex flex-column ">
+                                        <div class="">
+                                            <i class="far fa-clock mr-1"></i>
+                                            <span>0:15</span>
+                                        </div>
+                                        <span class="">R$: 7,50</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -76,18 +142,24 @@
                                         <div class="caixa my-3 ml-4"><i
                                                 class="fas fa-cash-register mr-2"></i><a>Caixa</a></div>
                                         <div class="caixa-valor m-3"><i class="fas fa-dollar-sign"><span
-                                                    class="caixa-texto">120,00</span></i></div>
-                                        <div class="caixa-valor p-3"><button type="button" class="btn btn-custom">Fechar
-                                                Caixa</button></div>
+                                                    class="caixa-texto">{{detalhesCaixa.Valor}}</span></i></div>
+                                        <div class="caixa-valor p-3" *ngIf="statusCaixa">
+                                            <button type="button" (click)="fecharCaixa()" class="btn btn-custom">Fechar
+                                                Caixa</button>
+                                        </div>
+                                        <div class="caixa-valor p-3" *ngIf="!statusCaixa">
+                                            <button type="button" (click)="abrirCaixa()"
+                                                class="btn btn-success-custom">Abrir Caixa</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-6  ">
                                     <div class="card-dashboard top">
                                         <div class="logout m-2"><i class="fas fa-sign-out-alt mr-1"></i>logout</div>
                                         <div class="usuario mt-4 mr-4">
-                                            <span class="avatar-texto pt-3 mr-3">Kamylla Lacerda</span>
-                                            <img class="avatar-usuario"
-                                                src="https://avatars2.githubusercontent.com/u/40613327?v=4" alt="">
+                                            <span class="avatar-texto pt-3 mr-3">{{usuario.nome}}</span>
+                                            <img class="avatar-usuario" (click)="AbrirModal(avatar)"
+                                                src="../../../assets/avatar/{{usuario.avatar}}" alt="">
                                         </div>
 
 
@@ -111,7 +183,8 @@
                                                         class="btn-pagamento btn-custom  btn-success">Adicionar</button>
                                                 </div>
                                                 <div *ngIf="vaga.statusOcupacao" class="botao-pagamento">
-                                                    <button type="button" (click)="AbrirModalVaga(vaga.id,adicionarPagamento)"
+                                                    <button type="button"
+                                                        (click)="AbrirModalVaga(vaga.id,adicionarPagamento)"
                                                         class="btn-pagamento btn-custom  ">Pagamento</button>
                                                 </div>
                                             </div>
@@ -347,10 +420,10 @@
                 <span style="font-family: Roboto;">R${{recibo.pagamento?.valor}}</span>
             </div>
         </div>
-              
+
 
         <div class="sub-titulo mt-3">Tipo de Pagamento</div>
-        <select class="form-control" [(ngModel)]="pagamento.tipo" >
+        <select class="form-control" [(ngModel)]="pagamento.tipo">
             <option [ngValue]="'cartaoCredito'">Cartão Credito</option>
             <option [ngValue]="'cartaoDebito'">Cartão Debito</option>
             <option [ngValue]="'dinheiro'">Dinheiro</option>
@@ -365,5 +438,17 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <div class="m-5">
         <p class="titulo">Sobre</p>
+    </div>
+</ng-template>
+
+<ng-template #avatar>
+    <div class="m-5">
+        <form enctype="multipart/form-data">
+            <p class="titulo">Adicione um avatar</p>
+
+            <input type="file" (change)="carregarAvatar($event.target.files)" id="file" name="file">
+            <button type="submit" (click)="adicionarAvatar()" class="btn btn-primary">Pagar</button>
+        </form>
+       
     </div>
 </ng-template>

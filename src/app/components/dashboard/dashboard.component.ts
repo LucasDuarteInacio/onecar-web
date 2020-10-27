@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import * as moment from 'moment';
 
@@ -8,6 +10,7 @@ import { Pagamento } from 'src/app/model/Pagamento';
 import { Recibo } from 'src/app/model/recibo';
 import { Usuario } from 'src/app/model/usuario';
 import { Vaga } from 'src/app/model/Vaga';
+import { CaixaDTO } from 'src/app/model/caixaDTO';
 import { VagaDTO } from 'src/app/model/VagaDTO';
 import { Veiculo } from 'src/app/model/Veiculo';
 import { ClienteService } from 'src/app/service/cliente.service';
@@ -27,17 +30,24 @@ export class DashboardComponent implements OnInit {
   novoCliente = new Cliente;
   novoVeiculo = new Veiculo;
   pagamento = new Pagamento;
+  usuario = new Usuario;
   novaVaga = new Vaga;
   recibo = new Recibo;
-  usuarios: Array<Usuario>
-  clientes: Array<Cliente>
-  vagas: Array<VagaDTO>
-  veiculos: Array<Veiculo>
-  recibos: Array<Recibo>
-  editar = false
+  usuarios: Array<Usuario>;
+  clientes: Array<Cliente>;
+  vagas: Array<VagaDTO>;
+  veiculos: Array<Veiculo>;
+  recibos: Array<Recibo>;
+  caixa: Array<Pagamento> = [];
+  detalhesCaixa = new CaixaDTO;
+  editar = false;
+  statusCaixa = false
+  tabelaMoto = false
+  tabelaCarro = false
   idCliente: number;
   idVeiculo: number;
   idVaga: number;
+  avatar: File
 
   constructor(
     private modalService: NgbModal,
@@ -45,12 +55,13 @@ export class DashboardComponent implements OnInit {
     private clienteService: ClienteService,
     private veiculoService: VeiculoService,
     private vagaService: VagaService,
-    private reciboService: ReciboService,
-    private pipe: DatePipe
+    private reciboService: ReciboService
   ) { }
 
   ngOnInit(): void {
-    this.carregarDados()
+    this.carregarDados();
+    this.controleCaixa();
+    this.carregarUsuarioLogado();
   }
 
 
@@ -61,6 +72,31 @@ export class DashboardComponent implements OnInit {
     this.recibos = await this.reciboService.buscarAtivos().toPromise();
     this.buscarReciboPlaca();
   }
+
+  async carregarUsuarioLogado() {
+    const usuario = localStorage.getItem('usuario')
+    const usuarioObj:Usuario = JSON.parse(usuario);
+    this.usuario = await this.usuarioService.buscarUsuarioPorId(usuarioObj.id).toPromise();
+  }
+
+  controleCaixa() {
+    const caixaStatus = localStorage.getItem('statusCaixa');
+    const caixaStatusObj = JSON.parse(caixaStatus);
+    if (caixaStatusObj) this.statusCaixa = true
+
+    const caixaStringfy = localStorage.getItem('caixa')
+    const caixa: Array<Pagamento> = JSON.parse(caixaStringfy)
+    if (caixa.length > 0) {
+      caixa.forEach(e => {
+        this.detalhesCaixa.Valor = this.detalhesCaixa.Valor + e.valor;
+        if (e.tipo === "dinheiro") this.detalhesCaixa.dinheiro = this.detalhesCaixa.dinheiro++
+        if (e.tipo === "cartaoDebito") this.detalhesCaixa.debito = this.detalhesCaixa.debito++
+        if (e.tipo === "cartaoCredito") this.detalhesCaixa.credito = this.detalhesCaixa.credito++
+      });
+    }
+  }
+
+
 
   buscarReciboPlaca() {
     this.recibos.forEach(e => {
@@ -80,7 +116,7 @@ export class DashboardComponent implements OnInit {
 
   AbrirModal(idModal) {
     this.modalService.open(idModal, { size: 'xl' });
-    
+
   }
 
 
@@ -118,16 +154,18 @@ export class DashboardComponent implements OnInit {
 
   AbrirModalVaga(idVaga, idModal) {
     this.modalService.open(
-      idModal, {beforeDismiss: () => {
-        this.recibo = undefined
+      idModal, {
+      beforeDismiss: () => {
+        this.recibo = new Recibo
 
-      return true;
-    }}) ;
+        return true;
+      }
+    });
     this.idVaga = idVaga;
     this.detalhesPagamentoRecibo(idVaga)
-    }
+  }
 
-    
+
 
   async addRecibo() {
     const veiculo = new Veiculo
@@ -139,7 +177,7 @@ export class DashboardComponent implements OnInit {
     this.recibo.vaga = vaga
 
     await this.reciboService.addRecibo(this.recibo).subscribe(res => {
-      this.recibo = undefined;
+      this.recibo = new Recibo;
       window.location.reload();
     })
   }
@@ -147,12 +185,9 @@ export class DashboardComponent implements OnInit {
   detalhesPagamentoRecibo(idVaga) {
     this.recibos.forEach(e => {
       if (e.vaga.id == idVaga) {
-
-
         this.recibo = e;
         this.calcularValorPagamento();
         this.recibo.pagamento = this.pagamento
-
       }
     })
   }
@@ -165,15 +200,15 @@ export class DashboardComponent implements OnInit {
     const inicio = moment(horaInicio);
     const fim = moment(horaAtual)
     const intervalo = fim.diff(inicio, 'minutes');
-    
- 
-    if (this.recibo.veiculo.tipo === "moto" || this.recibo.veiculo.tipo === "carro" ) {
+
+
+    if (this.recibo.veiculo.tipo === "moto" || this.recibo.veiculo.tipo === "carro") {
       if (intervalo <= 15) return this.pagamento.valor = 2.50
-      if (intervalo > 15 && intervalo <= 30)  this.pagamento.valor = 5.0
-      if (intervalo > 30 && intervalo <= 60)  this.pagamento.valor = 7.5
-      if (intervalo > 60 && intervalo <= 120)  this.pagamento.valor = 10.0
-      if (intervalo > 120 && intervalo <= 180)  this.pagamento.valor = 12.5
-      if (intervalo > 180 && intervalo <= 240)  this.pagamento.valor = 15.0
+      if (intervalo > 15 && intervalo <= 30) this.pagamento.valor = 5.0
+      if (intervalo > 30 && intervalo <= 60) this.pagamento.valor = 7.5
+      if (intervalo > 60 && intervalo <= 120) this.pagamento.valor = 10.0
+      if (intervalo > 120 && intervalo <= 180) this.pagamento.valor = 12.5
+      if (intervalo > 180 && intervalo <= 240) this.pagamento.valor = 15.0
       if (intervalo > 240) {
         let i = intervalo - 240
         i = i / 15
@@ -181,25 +216,57 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    if(this.recibo.veiculo.tipo === "moto"){
-      return  this.pagamento.valor = this.pagamento.valor/2 
+    if (this.recibo.veiculo.tipo === "moto") {
+      this.pagamento.valor = this.pagamento.valor / 2
+      return parseFloat(this.pagamento.valor.toFixed(2));
     }
-    return this.pagamento.valor
+    return this.pagamento.valor.toFixed(2)
   }
 
   async pagamentoRecibo() {
 
     const horariosaida = moment().format('HH:mm');
-    console.log(horariosaida)
-
-
     this.recibo.saida = horariosaida;
     this.recibo.pagamento = this.pagamento;
     await this.reciboService.pagarRecibo(this.recibo).subscribe(res => {
-      this.recibo = undefined;
+      debugger
+      this.recibo = new Recibo;
+      this.atualizarCaixa(this.pagamento)
       window.location.reload();
     })
   }
 
+
+  abrirCaixa() {
+    localStorage.setItem('caixa', JSON.stringify(this.caixa));
+    localStorage.setItem('statusCaixa', JSON.stringify(true));
+    window.location.reload();
+  }
+
+  atualizarCaixa(pagamento) {
+    const caixaStringfy = localStorage.getItem('caixa')
+    const caixa = JSON.parse(caixaStringfy)
+    caixa.push(pagamento)
+    localStorage.setItem('caixa', JSON.stringify(caixa))
+  }
+  fecharCaixa() {
+    localStorage.setItem('statusCaixa', JSON.stringify(false));
+    const caixaStringfy = localStorage.getItem('caixa')
+    let caixa = JSON.parse(caixaStringfy)
+    caixa = [];
+    localStorage.setItem('caixa', JSON.stringify(caixa));
+    this.detalhesCaixa = new CaixaDTO;
+    window.location.reload()
+  }
+
+  adicionarAvatar() {
+    this.usuarioService.addAvatar(this.avatar).subscribe(res => {
+      console.log("funfou")
+    })
+  }
+
+  carregarAvatar(event: FileList) {
+    this.avatar = event.item(0)
+  }
 
 }

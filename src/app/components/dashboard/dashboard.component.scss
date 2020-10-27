@@ -86,9 +86,9 @@
         border: 1px solid;
         border-color: rgba($color: #193b68, $alpha: 0.2);
         border-radius: 5px;
-        padding: 10px 20px;
+        padding: 5px 10px;
         font-weight: 300;
-        font-size: 16px;
+        font-size: 13px;
 
         & + .card-tabela {
             margin-top: 6px;
@@ -141,6 +141,18 @@
             transform: scale(1.1);
         }
     }
+    .btn-success-custom {
+        background: white;
+        border: #28a745 1px solid;
+        color: #28a745;
+        transition: transform 0.2s;
+        &:hover {
+            background: #28a745;
+            color: white;
+            transform: scale(1.1);
+        }
+    }
+
     .usuario {
         display: flex;
         justify-content: flex-end;

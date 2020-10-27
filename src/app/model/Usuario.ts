@@ -5,6 +5,6 @@ export class Usuario{
      public cpf?: string,
      public login?: string,
      public senha?: string,
-     
+     public avatar?: string,
     ){}
  }

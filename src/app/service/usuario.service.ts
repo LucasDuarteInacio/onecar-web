@@ -19,10 +19,19 @@ export class UsuarioService {
     return this.http.post(`${environment.baseUrl}/usuario`, usuario);
   }
 
+  public addAvatar(file:File):Observable<any>{
+    const formData = new FormData();
+    formData.append('avatar', file);
+    return this.http.post(`${environment.baseUrl}/usuario/avatar/1`, formData);
+  }
+
   public buscarTodos(): Observable<any>{
     return this.http.get(`${environment.baseUrl}/usuario`);
   }
 
+  public buscarUsuarioPorId(id): Observable<any>{
+    return this.http.get(`${environment.baseUrl}/usuario/${id}`);
+  }
 
 
 }
